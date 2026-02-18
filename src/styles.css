@@ -1,0 +1,154 @@
+/* --- Desktop Navbar Alignment --- */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex; /* This puts links and button on one line */
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links {
+  display: flex;  /* This puts Home, About, etc. on one line */
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quote-btn {
+  white-space: nowrap; /* Prevents button text from wrapping */
+  flex-shrink: 0; /* Prevents button from squishing */
+}
+
+/* 1. Ensure the hamburger is hidden on large screens */
+.hamburger {
+  display: none; 
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 2. Show the hamburger only on mobile/tablet */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block !important; /* Force visibility on small screens */
+    z-index: 1100; /* Keep it above the drawer */
+    position: relative; /* Ensure it stays in the nav-container */
+  }
+
+/* 3. Ensure the Desktop Menu hides when the Hamburger shows */
+  .nav-menu {
+    display: none; /* Hide the row version */
+ }
+
+  /* 4. Show the vertical drawer when 'active' class is added */
+   .nav-menu.active {
+    display: flex; 
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: #2c3e50;
+    flex-direction: column;
+    padding-top: 50px;
+  }
+}
+
+
+.stats-section {
+  /* This creates a named timeline for the section */
+  view-timeline: --statsSection block;
+}
+
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.stat-number {
+  --num: 0;
+  counter-reset: num var(--num);
+}
+
+/* This class is added by JS once, and never removed */
+.stat-number.start-count {
+  animation: count-up 2s ease-out forwards;
+}
+
+@keyframes count-up {
+  from { --num: 0; }
+  to { --num: var(--target); }
+}
+
+.stat-number::after {
+  content: counter(num) "+";
+}
+
+/* 1. Define the slide-in animation */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px); /* Start 100px to the right */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* End at its natural position */
+  }
+}
+
+/* 2. Apply it to the hero content */
+.hero-content h2 {
+  animation: slideInRight 1s ease-out forwards;
+}
+
+.hero-content p {
+  animation: slideInRight 1s ease-out 0.3s forwards; /* 0.3s delay so it follows the title */
+  opacity: 0; /* Keeps it hidden until the animation starts */
+}
+
+/* Initial state: hidden and pushed to the right */
+.about-section .container { /* Added .container */
+  opacity: 0;
+  transform: translateX(100px);
+  transition: transform 1.2s ease-out, opacity 1.2s ease-out;
+}
+
+.about-section.animate-in .container { /* Added .container */
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* If the app-gallery component exists on the page, hide the top-bar */
+body:has(app-gallery) .top-bar {
+  display: none;
+}
+
+/* Prevent Navbar from ever animating */
+.navbar, .top-bar, .nav-container, .logo, .nav-menu {
+  animation: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+body:has(app-gallery) .navbar {
+  margin-top: 0 !important;
+  top: 0 !important;
+  position: sticky; /* Or fixed, depending on your design */
+  z-index: 1000;
+}
+
+body:has(app-gallery) router-outlet + * {
+  margin-top: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}

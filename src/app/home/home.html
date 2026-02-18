@@ -1,0 +1,108 @@
+<header class="hero" [style.backgroundImage]="'url(' + heroSlides[0].image + ')'">
+  <div class="overlay">
+    <div class="container hero-content">
+      <h2>{{ heroSlides[0].title }}</h2>
+      <p>{{ heroSlides[0].subtitle }}</p>
+      <div class="hero-btns">
+        <button class="btn-primary" (click)="productsClick()">Our Products</button>
+        <button class="btn-secondary" (click)="contactUsClick()">Contact Us</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="section about-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-title">Who We Are</span>
+      <h2>Best Solar Energy Company</h2>
+    </div>
+    <div class="about-content">
+      <p>
+        <strong>Maa Veena Power Zone</strong> is a leading solar solutions provider specializing in the supply and
+        installation of a wide range of high-quality solar products. With a strong presence in Samastipur, Bihar, we
+        have built a solid reputation through our unwavering commitment to superior workmanship, reliable products, and
+        timely project execution.
+
+        Our expertise extends across residential, commercial, industrial, and institutional solar projects. We
+        specialize in comprehensive Solar EPC (Engineering, Procurement, and Construction) contracts, offering
+        end-to-end solutions—from site assessment and system design to procurement, installation, testing, and ongoing
+        support.
+
+        At MAA Veena Power Zone, our mission is to promote clean, sustainable energy while delivering cost-effective and
+        customized solar power solutions that meet the unique energy needs of our clients. Through innovation, quality
+        assurance, and customer satisfaction, we continue to contribute to a greener and more energy-efficient future
+        for Samastipur and beyond.
+      </p>
+      <p>
+        We specialize in Solar EPC contracts.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="section bg-light">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="sub-title">Our Solutions</span>
+      <h2>Premium Solar Products</h2>
+    </div>
+
+    <div class="product-grid">
+<div class="product-card" *ngFor="let product of products">
+  <div class="prod-details">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.desc }}</p>
+    <a [routerLink]="['/product', product.id]" class="read-more">Read More &rarr;</a>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="section stats-section">
+  <div class="container stats-grid">
+    <div class="stat-item" *ngFor="let stat of stats">
+      <h3 class="stat-number" [style.--target]="stat.count"></h3>
+      <p>{{ stat.label }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to switch to Solar Energy?</h2>
+    <p>Contact Maa Veena Power Zone today for a sustainable future.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h3>Maa Veena Power Zone</h3>
+      <p>Your trusted partner for solar energy solutions.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#products">Products</a></li>
+      </ul>
+    </div>
+    <div id="contact" class="footer-col">
+      <h3>Contact Us</h3>
+      <p>Address: jail chowk, Tajpur road, samastipur, Bihar.</p>
+        <a href="tel:+919709877100">
+          <i class="fa fa-phone"></i> +91 9709877100
+        </a>
+      <br>
+        <a href="mailto:uniquetiwari1971@gmail.com">
+          <i class="fa fa-envelope"></i> uniquetiwari1971@gmail.com
+        </a>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <p>&copy; {{ currentYear }} Maa Veena Power Zone. All Rights Reserved.</p>
+  </div>
+</footer>
