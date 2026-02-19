@@ -195,3 +195,7 @@ button { cursor: pointer; border: none; outline: none; transition: 0.3s; }
 .top-info i {
   margin-right: 8px;
 }
+
+.logo a {
+  text-decoration: none !important;
+}
