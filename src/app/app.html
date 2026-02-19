@@ -25,7 +25,9 @@
   <div class="container nav-container">
 
     <div class="logo">
+      <a routerLink="/" (click)="closeMenu()" class="logo-link">
       <h1>MAA VEENA <span>POWER ZONE</span></h1>
+      </a>
     </div>
 
     <button class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle menu">
