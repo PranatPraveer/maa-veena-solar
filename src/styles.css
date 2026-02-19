@@ -113,13 +113,13 @@
 }
 
 /* Initial state: hidden and pushed to the right */
-.about-section .container { /* Added .container */
+.container { /* Added .container */
   opacity: 0;
   transform: translateX(100px);
   transition: transform 1.2s ease-out, opacity 1.2s ease-out;
 }
 
-.about-section.animate-in .container { /* Added .container */
+ .container { /* Added .container */
   opacity: 1;
   transform: translateX(0);
 }
@@ -140,7 +140,7 @@ body:has(app-gallery) .top-bar {
 body:has(app-gallery) .navbar {
   margin-top: 0 !important;
   top: 0 !important;
-  position: sticky; /* Or fixed, depending on your design */
+  position: sticky;
   z-index: 1000;
 }
 

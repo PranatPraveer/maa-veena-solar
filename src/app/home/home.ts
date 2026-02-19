@@ -14,9 +14,6 @@ export class home {
 
   currentYear = new Date().getFullYear();
 
-  // Replace with your actual Google Form URL
-
-
 
   products = [
     {
@@ -46,7 +43,6 @@ export class home {
 
   ];
 
-  // If you are using 'stats' in your HTML, add this too to prevent the next error:
   stats = [
     { count: 50, label: 'Projects Done' },
     { count: 100, label: 'Happy Clients' },
@@ -78,22 +74,13 @@ export class home {
     }
   }
 
-  // Inside your home class
 ngAfterViewInit() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Trigger for Stats
         if (entry.target.classList.contains('stats-section')) {
           document.querySelectorAll('.stat-number').forEach(el => el.classList.add('start-count'));
         }
-        
-        // Trigger for About Section
-        if (entry.target.classList.contains('about-section')) {
-          entry.target.classList.add('animate-in');
-        }
-
-        // Stop watching THIS specific element once it has animated
         observer.unobserve(entry.target);
       }
     });
@@ -101,9 +88,7 @@ ngAfterViewInit() {
 
   // Watch both sections
   const statsSec = document.querySelector('.stats-section');
-  const aboutSec = document.querySelector('.about-section');
   
   if (statsSec) observer.observe(statsSec);
-  if (aboutSec) observer.observe(aboutSec);
 }
 }

@@ -95,7 +95,6 @@ button { cursor: pointer; border: none; outline: none; transition: 0.3s; }
   counter-reset: num var(--num);
 }
 
-/* This class is added by JS once, and never removed */
 .stat-number.start-count {
   animation: count-up 2s ease-out forwards;
 }
@@ -109,7 +108,6 @@ button { cursor: pointer; border: none; outline: none; transition: 0.3s; }
   content: counter(num) "+";
 }
 
-/* 1. Define the slide-in animation */
 @keyframes slideInRight {
   from {
     opacity: 0;
@@ -127,6 +125,6 @@ button { cursor: pointer; border: none; outline: none; transition: 0.3s; }
 }
 
 .hero-content p {
-  animation: slideInRight 1s ease-out 0.3s forwards; /* 0.3s delay so it follows the title */
-  opacity: 0; /* Keeps it hidden until the animation starts */
+  animation: slideInRight 1s ease-out 0.3s forwards;
+  opacity: 0; 
 }
