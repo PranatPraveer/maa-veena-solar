@@ -1,94 +1,122 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
+import { ContactComponent } from '../contact.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ContactComponent],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.css'
 })
-export class home {
-
-  currentYear = new Date().getFullYear();
-
-
+export class HomeComponent implements AfterViewInit, OnDestroy {
   products = [
-    {
-      id: 'batteries',
-      name: 'Batteries',
-      desc: 'We deal in high-performance Lithium-Ion, Lithium Iron Phosphate (LiFePO₄), and Lead-Acid solar batteries from trusted brands, offering reliable energy storage solutions for residential, commercial, and industrial solar systems. Our batteries ensure long backup time, enhanced safety, and efficient power management.',
-      img: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      id: 'solar-structures',
-      name: 'Solar Structures',
-      desc: 'Durable and weather-resistant mounting structures for solar panels.',
-      img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      id: 'solar-panels',
-      name: 'Solar Panels',
-      desc: 'Authorized dealers of advanced solar panel technologies including HJT and N-Type TOPCon bifacial modules, offering higher efficiency, better durability, and improved long-term performance.',
-      img: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      id: 'solar-inverters',
-      name: 'Solar Inverters',
-      desc: 'We deal in high-quality On-Grid, Off-Grid, and Hybrid solar inverters from trusted brands, offering reliable and efficient power conversion solutions for residential, commercial, and industrial solar installations. We ensure genuine products, competitive pricing, and complete customer support.',
-      img: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=600&q=80'
-    }
+    { id: 'solar-panels', name: 'Solar Panels', desc: 'High-efficiency monocrystalline panels for maximum power generation.' },
+    { id: 'solar-inverters', name: 'Solar Inverters', desc: 'Smart inverters for seamless DC to AC conversion.' },
+    { id: 'solar-structures', name: 'Mounting Structures', desc: 'Durable and rust-proof galvanized iron structures.' },
+    { id: 'batteries', name: 'Solar Batteries', desc: 'Advanced LiFePO4 batteries for long-lasting backup.' }
+  ];
 
+  heroSlides = [
+    { image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', title: 'Powering the Future with Solar', subtitle: 'Pioneering EPC solutions in Samastipur and beyond.' }
   ];
 
   stats = [
-    { count: 50, label: 'Projects Done' },
-    { count: 100, label: 'Happy Clients' },
-    { count: 2, label: 'Years Experience' }
+    { count: 50, label: 'Projects Completed', current: 0 },
+    { count: 2, label: 'Years Experience', current: 0 },
+    { count: 5, label: 'Cities Covered', current: 0 }
   ];
 
+  currentYear = new Date().getFullYear();
+  private observer: IntersectionObserver | null = null;
+  private statObserver: IntersectionObserver | null = null;
+  private animationStarted = false;
 
+  constructor(private router: Router, private cdr: ChangeDetectorRef) { }
 
-  heroSlides = [
-    {
-      title: 'MAA VEENA POWER ZONE',
-      subtitle: 'Sustainable Energy for a Brighter Tomorrow',
-      image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80'
-    }
-  ];
+  ngAfterViewInit() {
+    this.setupScrollAnimations();
+    this.setupStatCounter();
+  }
 
+  ngOnDestroy() {
+    if (this.observer) this.observer.disconnect();
+    if (this.statObserver) this.statObserver.disconnect();
+  }
 
+  private setupScrollAnimations() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      this.observer!.observe(el);
+    });
+  }
+
+  private setupStatCounter() {
+    const statsSection = document.querySelector('.stats-section');
+    if (!statsSection) return;
+
+    this.statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.animationStarted) {
+          this.animationStarted = true;
+          this.animateStats();
+        }
+      });
+    }, { threshold: 0.1 }); // Lower threshold in case section is large
+
+    this.statObserver.observe(statsSection);
+  }
+
+  private animateStats() {
+    const duration = 2000;
+    const frameDuration = 1000 / 60;
+    const totalFrames = Math.round(duration / frameDuration);
+
+    this.stats.forEach(stat => {
+      let frame = 0;
+      const counter = setInterval(() => {
+        frame++;
+        const progress = frame / totalFrames;
+        // Easing function for smooth stop
+        const easeOutQuad = (t: number) => t * (2 - t);
+        const currentCount = Math.round(stat.count * easeOutQuad(progress));
+
+        if (frame >= totalFrames) {
+          stat.current = stat.count;
+          clearInterval(counter);
+        } else {
+          stat.current = currentCount;
+        }
+        this.cdr.detectChanges(); // Trigger Angular UI update
+      }, frameDuration);
+    });
+  }
 
   productsClick() {
     const productSection = document.getElementById('products');
     if (productSection) {
-      productSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      productSection.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  contactUsClick(){
+
+  contactUsClick() {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   }
-
-ngAfterViewInit() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (entry.target.classList.contains('stats-section')) {
-          document.querySelectorAll('.stat-number').forEach(el => el.classList.add('start-count'));
-        }
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  // Watch both sections
-  const statsSec = document.querySelector('.stats-section');
-  
-  if (statsSec) observer.observe(statsSec);
-}
 }

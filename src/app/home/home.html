@@ -11,7 +11,7 @@
   </div>
 </header>
 
-<section id="about" class="section about-section">
+<section id="about" class="section about-section animate-on-scroll slide-up">
   <div class="container">
     <div class="section-header">
       <span class="sub-title">Who We Are</span>
@@ -41,7 +41,7 @@
   </div>
 </section>
 
-<section id="products" class="section bg-light">
+<section id="products" class="section bg-light animate-on-scroll fade-in">
   <div class="container">
     <div class="section-header text-center">
       <span class="sub-title">Our Solutions</span>
@@ -63,18 +63,13 @@
 <section class="section stats-section">
   <div class="container stats-grid">
     <div class="stat-item" *ngFor="let stat of stats">
-      <h3 class="stat-number" [style.--target]="stat.count"></h3>
+      <h3 class="stat-number">{{ stat.current }}+</h3>
       <p>{{ stat.label }}</p>
     </div>
   </div>
 </section>
 
-<section class="cta-section">
-  <div class="container">
-    <h2>Ready to switch to Solar Energy?</h2>
-    <p>Contact Maa Veena Power Zone today for a sustainable future.</p>
-  </div>
-</section>
+<app-contact></app-contact>
 
 <footer class="footer">
   <div class="container footer-grid">

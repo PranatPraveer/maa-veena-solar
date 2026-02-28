@@ -79,33 +79,24 @@ button { cursor: pointer; border: none; outline: none; transition: 0.3s; }
   transition: 0.3s;
 }
 
-.stats-section {
-  /* This creates a named timeline for the section */
-  view-timeline: --statsSection block;
+/* Base scroll animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+  will-change: transform, opacity;
 }
 
-@property --num {
-  syntax: '<integer>';
-  initial-value: 0;
-  inherits: false;
+.animate-on-scroll.slide-up {
+  transform: translateY(30px);
 }
 
-.stat-number {
-  --num: 0;
-  counter-reset: num var(--num);
+.animate-on-scroll.fade-in {
+  transform: translateY(0) scale(0.98);
 }
 
-.stat-number.start-count {
-  animation: count-up 2s ease-out forwards;
-}
-
-@keyframes count-up {
-  from { --num: 0; }
-  to { --num: var(--target); }
-}
-
-.stat-number::after {
-  content: counter(num) "+";
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 @keyframes slideInRight {
