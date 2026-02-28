@@ -45,7 +45,7 @@ import { Component, signal } from '@angular/core';
 
         <form 
           class="contact-form" 
-          action="https://formspree.io/f/mreaddwn" 
+          action="https://formspree.io/f/mpqjnvwa" 
           method="POST"
           (submit)="handleSubmit($event)"
         >
