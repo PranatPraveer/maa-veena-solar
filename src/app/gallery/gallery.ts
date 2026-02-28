@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
       <h2>Project Gallery</h2>
       <div class="grid">
         <div class="item" *ngFor="let img of images">
-          <img [src]="'/assets/galleryImages/' + img" alt="Solar Project">
+          <img [src]="'assets/galleryImages/' + img" alt="Solar Project">
         </div>
       </div>
       <br>
