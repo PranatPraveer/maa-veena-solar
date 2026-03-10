@@ -333,11 +333,24 @@ button {
   z-index: 9999;
   transition: all 0.3s ease;
   animation: whatsappPulse 2s infinite;
+
+  /* Hardware acceleration and rendering stability for mobile */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+
+  /* Ensure visibility from start */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
 }
 
 .whatsapp-float:hover {
   background: #128C7E;
-  transform: scale(1.1);
+  -webkit-transform: translate3d(0, -5px, 0) scale(1.1);
+  transform: translate3d(0, -5px, 0) scale(1.1);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
 }
 
