@@ -1,11 +1,11 @@
-<header class="hero" [style.backgroundImage]="'url(' + heroSlides[0].image + ')'">
+<header class="hero" [style.backgroundImage]="'url(' + heroSlides[0].image + ')'" role="banner">
   <div class="overlay">
     <div class="container hero-content">
       <h2>{{ heroSlides[0].title }}</h2>
       <p>{{ heroSlides[0].subtitle }}</p>
       <div class="hero-btns">
-        <button class="btn-primary" (click)="productsClick()">Our Products</button>
-        <button class="btn-secondary" (click)="contactUsClick()">Contact Us</button>
+        <button class="btn-primary" (click)="productsClick()">Our Solar Products</button>
+        <button class="btn-secondary" (click)="contactUsClick()">Get Free Consultation</button>
       </div>
     </div>
   </div>
@@ -15,27 +15,32 @@
   <div class="container">
     <div class="section-header">
       <span class="sub-title">Who We Are</span>
-      <h2>Best Solar Energy Company</h2>
+      <h2>Best Solar Panel Installation Company in Samastipur, Muzaffarpur & Darbhanga</h2>
     </div>
     <div class="about-content">
       <p>
-        <strong>Maa Veena Power Zone</strong> is a leading solar solutions provider specializing in the supply and
-        installation of a wide range of high-quality solar products. With a strong presence in Samastipur, Bihar, we
-        have built a solid reputation through our unwavering commitment to superior workmanship, reliable products, and
-        timely project execution.
-
-        Our expertise extends across residential, commercial, industrial, and institutional solar projects. We
-        specialize in comprehensive Solar EPC (Engineering, Procurement, and Construction) contracts, offering
-        end-to-end solutions—from site assessment and system design to procurement, installation, testing, and ongoing
-        support.
-
-        At MAA Veena Power Zone, our mission is to promote clean, sustainable energy while delivering cost-effective and
-        customized solar power solutions that meet the unique energy needs of our clients. Through innovation, quality
-        assurance, and customer satisfaction, we continue to contribute to a greener and more energy-efficient future
-        for Samastipur and beyond.
+        <strong>Maa Veena Power Zone</strong> is a leading solar energy company and trusted solar panel installer
+        serving
+        <strong>Samastipur, Muzaffarpur, Darbhanga</strong>, and across North Bihar. We are your one-stop solution for
+        premium solar panel installation, rooftop solar systems, and complete solar EPC (Engineering, Procurement, and
+        Construction) services.
       </p>
       <p>
-        We specialize in Solar EPC contracts.
+        With a strong presence in Bihar, we have built a solid reputation through our unwavering commitment to superior
+        workmanship, reliable solar products, and timely project execution. Our expertise extends across
+        <strong>residential solar installation, commercial solar projects, industrial solar power plants</strong>, and
+        institutional solar setups.
+      </p>
+      <p>
+        We are a <strong>PM Surya Ghar Yojana approved vendor</strong> and help our customers avail up to 40%
+        government subsidy on solar panel installation. Whether you need an <strong>on-grid solar system, off-grid
+          solar setup, or hybrid solar solution</strong> — Maa Veena Power Zone delivers cost-effective, customized
+        solar power solutions tailored to your energy needs.
+      </p>
+      <p>
+        Serving <strong>Samastipur, Muzaffarpur, Darbhanga, Begusarai, Madhubani</strong>, and all nearby districts,
+        we are committed to promoting clean, sustainable solar energy across Bihar. Choose Maa Veena Power Zone
+        for the <strong>best solar panel installation near you</strong> — trusted by 50+ satisfied customers.
       </p>
     </div>
   </div>
@@ -44,18 +49,51 @@
 <section id="products" class="section bg-light animate-on-scroll fade-in">
   <div class="container">
     <div class="section-header text-center">
-      <span class="sub-title">Our Solutions</span>
-      <h2>Premium Solar Products</h2>
+      <span class="sub-title">Our Solar Solutions</span>
+      <h2>Premium Solar Products & Installation Services</h2>
     </div>
 
     <div class="product-grid">
-<div class="product-card" *ngFor="let product of products">
-  <div class="prod-details">
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.desc }}</p>
-    <a [routerLink]="['/product', product.id]" class="read-more">Read More &rarr;</a>
+      <div class="product-card" *ngFor="let product of products">
+        <div class="prod-details">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.desc }}</p>
+          <a [routerLink]="['/product', product.id]" class="read-more">Read More &rarr;</a>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="section why-choose-section animate-on-scroll slide-up">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="sub-title">Why Choose Us</span>
+      <h2>Why Maa Veena Power Zone is Bihar's Preferred Solar Company</h2>
+    </div>
+    <div class="why-choose-grid">
+      <div class="why-card" *ngFor="let reason of whyChooseUs">
+        <div class="why-icon">{{ reason.icon }}</div>
+        <h3>{{ reason.title }}</h3>
+        <p>{{ reason.desc }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service Areas Section for Local SEO -->
+<section class="section service-areas-section animate-on-scroll fade-in">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="sub-title">Areas We Serve</span>
+      <h2>Solar Panel Installation Across North Bihar</h2>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card" *ngFor="let area of serviceAreas">
+        <h3>{{ area.city }}</h3>
+        <p>{{ area.desc }}</p>
+      </div>
     </div>
   </div>
 </section>
@@ -71,33 +109,55 @@
 
 <app-contact></app-contact>
 
-<footer class="footer">
+<footer class="footer" role="contentinfo">
   <div class="container footer-grid">
     <div class="footer-col">
       <h3>Maa Veena Power Zone</h3>
-      <p>Your trusted partner for solar energy solutions.</p>
+      <p>Bihar's trusted partner for solar energy solutions. Best solar panel installation company in Samastipur,
+        Muzaffarpur & Darbhanga.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/profile.php?id=61586382465677" target="_blank" rel="noopener noreferrer"
+          aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/maaveenapowerzone/" target="_blank" rel="noopener noreferrer"
+          aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/7739650320" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+            class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
     <div class="footer-col">
-      <h3>Quick Links</h3>
+      <h3>Our Solar Services</h3>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#products">Products</a></li>
+        <li><a href="#products">Rooftop Solar Installation</a></li>
+        <li><a href="#products">On-Grid Solar Systems</a></li>
+        <li><a href="#products">Off-Grid & Hybrid Solar</a></li>
+        <li><a href="#products">Solar EPC Contracts</a></li>
+        <li><a href="#contact">PM Surya Ghar Yojana Help</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Service Areas</h3>
+      <ul>
+        <li><a href="#about">Solar Installation in Samastipur</a></li>
+        <li><a href="#about">Solar Panel in Muzaffarpur</a></li>
+        <li><a href="#about">Solar Energy in Darbhanga</a></li>
+        <li><a href="#about">Solar System in Begusarai</a></li>
+        <li><a href="#about">Solar Power in Madhubani</a></li>
       </ul>
     </div>
     <div id="contact" class="footer-col">
       <h3>Contact Us</h3>
-      <p>Address: jail chowk, Tajpur road, samastipur, Bihar.</p>
-        <a href="tel:+919709877100">
-          <i class="fa fa-phone"></i> +91 9709877100
-        </a>
+      <p>Address: Jail Chowk, Tajpur Road, Samastipur, Bihar 848101</p>
+      <a href="tel:+919709877100">
+        <i class="fa fa-phone"></i> +91 9709877100
+      </a>
       <br>
-        <a href="mailto:uniquetiwari1971@gmail.com">
-          <i class="fa fa-envelope"></i> uniquetiwari1971@gmail.com
-        </a>
+      <a href="mailto:uniquetiwari1971@gmail.com">
+        <i class="fa fa-envelope"></i> uniquetiwari1971@gmail.com
+      </a>
     </div>
   </div>
   <div class="bottom-bar">
-    <p>&copy; {{ currentYear }} Maa Veena Power Zone. All Rights Reserved.</p>
+    <p>&copy; {{ currentYear }} Maa Veena Power Zone | Best Solar Panel Installation Company in Samastipur, Muzaffarpur
+      & Darbhanga, Bihar. All Rights Reserved.</p>
   </div>
 </footer>

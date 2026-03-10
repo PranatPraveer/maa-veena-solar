@@ -15,22 +15,27 @@
       </span>
     </div>
     <div class="social-icons">
-      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61586382465677" target="_blank" rel="noopener noreferrer"
+        aria-label="Facebook - Maa Veena Power Zone"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/maaveenapowerzone/" target="_blank" rel="noopener noreferrer"
+        aria-label="Instagram - Maa Veena Power Zone"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/7739650320?text=Hello%20Maa%20Veena%20Power%20Zone%2C%20I%20am%20interested%20in%20solar%20panel%20installation.%20Please%20share%20details."
+        target="_blank" rel="noopener noreferrer" aria-label="WhatsApp - Maa Veena Power Zone"><i
+          class="fab fa-whatsapp"></i></a>
     </div>
   </div>
 </div>
-<nav class="navbar">
+<nav class="navbar" role="navigation" aria-label="Main Navigation">
   <div class="container nav-container">
 
     <div class="logo">
-      <a routerLink="/" (click)="closeMenu()" class="logo-link">
+      <a routerLink="/" (click)="closeMenu()" class="logo-link"
+        title="Maa Veena Power Zone - Best Solar Panel Installation in Samastipur, Muzaffarpur & Darbhanga">
         <h1>MAA VEENA <span>POWER ZONE</span></h1>
       </a>
     </div>
 
-    <button class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle menu">
+    <button class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle navigation menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
@@ -51,9 +56,17 @@
           </a>
         </li>
       </ul>
-      <button class="quote-btn" [routerLink]="['/']" fragment="contact" (click)="closeMenu()">Get Quote</button>
+      <button class="quote-btn" [routerLink]="['/']" fragment="contact" (click)="closeMenu()">Get Free Quote</button>
     </div>
 
   </div>
 </nav>
 <router-outlet></router-outlet>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/7739650320?text=Hello%20Maa%20Veena%20Power%20Zone%2C%20I%20am%20interested%20in%20solar%20panel%20installation.%20Please%20share%20details%20and%20pricing."
+  class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+  aria-label="Chat with Maa Veena Power Zone on WhatsApp" title="Chat with us on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us!</span>
+</a>

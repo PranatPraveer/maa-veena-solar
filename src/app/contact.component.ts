@@ -5,8 +5,11 @@ import { Component, signal } from '@angular/core';
   standalone: true,
   template: `
     <section class="contact section" id="contact">
-      <span class="sub-title" style="text-align: center; width: 100%;">Contact Us</span>
-      <h2 class="section-title" style="text-align: center; width: 100%; margin-bottom: 2rem; color: #2c3e50;">Get in Touch</h2>
+      <span class="sub-title" style="text-align: center; width: 100%;">Contact Us for Solar Installation</span>
+      <h2 class="section-title" style="text-align: center; width: 100%; margin-bottom: 2rem; color: #2c3e50;">Get Your Free Solar Consultation</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666; font-size: 1.1rem;">
+        Serving Samastipur, Muzaffarpur, Darbhanga and all of North Bihar. Contact Maa Veena Power Zone to lower your electricity bill today.
+      </p>
 
       <div class="contact-grid">
         <div class="contact-info">
@@ -14,32 +17,33 @@ import { Component, signal } from '@angular/core';
             <div class="info-icon">📧</div>
             <div>
               <h4>Email</h4>
-              <p>uniquetiwari1971&#64;gmail.com</p>
+              <p>
+                <a href="mailto:uniquetiwari1971@gmail.com" style="color: inherit; text-decoration: none;">uniquetiwari1971&#64;gmail.com</a>
+              </p>
             </div>
           </div>
           <div class="info-card">
             <div class="info-icon">📍</div>
             <div>
-              <h4>Address</h4>
-              <p>Jail Chowk, Tajpur Road, Samastipur, Bihar</p>
+              <h4>Head Office</h4>
+              <p>Jail Chowk, Tajpur Road, Samastipur, Bihar 848101</p>
             </div>
           </div>
           <div class="info-card">
             <div class="info-icon">📞</div>
             <div>
-              <h4>Phone</h4>
-              <p>+91 9709877100</p>
+              <h4>Phone & WhatsApp</h4>
+              <p>
+                <a href="tel:+919709877100" style="color: inherit; text-decoration: none;">+91 9709877100</a>
+              </p>
             </div>
           </div>
           <div class="info-card">
             <div class="info-icon">💼</div>
             <div>
-              <h4>Status</h4>
-              <p class="status-available">Available for Bookings</p>
+              <h4>Service Status</h4>
+              <p class="status-available">Available for Bookings in Muzaffarpur, Samastipur & Darbhanga</p>
             </div>
-          </div>
-          <div class="social-links" style="margin-top: 1rem;">
-             <!-- Keep for layout consistency if needed -->
           </div>
         </div>
 
@@ -48,6 +52,7 @@ import { Component, signal } from '@angular/core';
           action="https://formspree.io/f/mpqjnvwa" 
           method="POST"
           (submit)="handleSubmit($event)"
+          aria-label="Contact form for solar panel quotation"
         >
           <div class="form-group">
             <label for="name">Name</label>
@@ -59,18 +64,22 @@ import { Component, signal } from '@angular/core';
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required />
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number (e.g., 9709877100)" required />
+          </div>
+          <div class="form-group">
+            <label for="city">Your City</label>
+            <input type="text" id="city" name="city" placeholder="e.g., Samastipur, Muzaffarpur, Darbhanga" required />
           </div>
           <div class="form-group">
             <label for="bill">Monthly Electricity Bill</label>
             <input type="text" id="bill" name="bill" placeholder="e.g., ₹2000" required />
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="I'm interested in..." required></textarea>
+            <label for="message">Message / Enquiry</label>
+            <textarea id="message" name="message" rows="4" placeholder="I'm interested in rooftop solar panel installation..." required></textarea>
           </div>
           <button type="submit" class="submit-btn" [class.sent]="formSent()">
-            {{ formSent() ? '✓ Sending...' : 'Send Message' }}
+            {{ formSent() ? '✓ Sending Enquiry...' : 'Get Free Solar Quote' }}
           </button>
         </form>
       </div>
@@ -122,6 +131,10 @@ import { Component, signal } from '@angular/core';
     .info-card p {
       font-size: 0.95rem;
       color: #1e293b;
+    }
+    
+    .info-card p a:hover {
+      color: #f39c12;
     }
 
     .status-available {
@@ -216,3 +229,4 @@ export class ContactComponent {
     this.formSent.set(true);
   }
 }
+

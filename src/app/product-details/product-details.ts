@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
     <div class="product-detail-container" *ngIf="product">
       <div class="product-header">
         <button routerLink="/" class="back-link"><i class="fa fa-arrow-left"></i> Back to Products</button>
-        <h2>{{ product.name }}</h2>
-        <p class="subtitle">Next-Generation Solar Engineering by Maa Veena Power Zone</p>
+        <h2>{{ product.name }} in Bihar</h2>
+        <p class="subtitle">Next-Generation Solar Engineering by Maa Veena Power Zone — Serving Samastipur, Muzaffarpur & Darbhanga</p>
       </div>
 
       <div class="product-grid">
@@ -47,7 +47,10 @@ import { CommonModule } from '@angular/common';
               <span class="spec-value">{{ spec.value }}</span>
             </li>
           </ul>
-          <button class="whatsapp-btn" (click)="sendWhatsApp()">
+          <p class="subsidy-note" style="margin-top: 20px; font-size: 0.9rem; color: #16a085; font-weight: 600;">
+            <i class="fa fa-info-circle"></i> Eligible for PM Surya Ghar Yojna Subsidy in Bihar.
+          </p>
+          <button class="whatsapp-btn" (click)="sendWhatsApp()" aria-label="Get a quote for this solar product via WhatsApp">
             <i class="fab fa-whatsapp"></i> Get Quote on WhatsApp
           </button>
         </div>
@@ -83,6 +86,12 @@ import { CommonModule } from '@angular/common';
     .whatsapp-btn:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
 
     @media (max-width: 992px) { .product-grid { grid-template-columns: 1fr; } .benefit-grid { grid-template-columns: 1fr; } .product-specs { position: static; } }
+    @media (max-width: 480px) {
+      .whatsapp-btn { padding: 14px; font-size: 0.95rem; white-space: normal; text-align: center; }
+      .product-header h2 { font-size: 1.5rem; line-height: 1.3; }
+      .product-header { padding: 30px 20px; }
+      .back-link { font-size: 0.9rem; padding: 8px 15px; }
+    }
   `]
 })
 export class ProductDetailsComponent implements OnInit {
@@ -152,14 +161,14 @@ export class ProductDetailsComponent implements OnInit {
         { label: 'Design Life', value: '25 - 30 Years' }
       ]
     },
-    { 
-      id: 'batteries', 
-      name: 'Advanced LiFePO4 & Solar Tubular Storage', 
+    {
+      id: 'batteries',
+      name: 'Advanced LiFePO4 & Solar Tubular Storage',
       fullDescription: `Modern solar storage focuses on depth and speed. 
 
       LiFePO4 (Lithium Iron Phosphate): The safest battery technology in the world. Non-combustible, fast-charging (0-100% in 3 hours), and built for 10+ years of daily use.
       
-      Solar Tubular (C10): For customers preferring traditional lead-acid, we provide C10-rated tubular batteries. Unlike standard C20 inverter batteries, C10 is designed for the high-frequency discharge and recharge cycles of a solar system, ensuring longer backup and better recovery.`, 
+      Solar Tubular (C10): For customers preferring traditional lead-acid, we provide C10-rated tubular batteries. Unlike standard C20 inverter batteries, C10 is designed for the high-frequency discharge and recharge cycles of a solar system, ensuring longer backup and better recovery.`,
       keyBenefits: [
         { title: 'Ultra-Safe Chemistry', text: 'LiFePO4 technology is thermally stable and safe for indoor installation.' },
         { title: 'Long Cycle Life', text: 'Lithium systems offer 5,000+ cycles compared to 1,200 in traditional batteries.' }
@@ -169,11 +178,11 @@ export class ProductDetailsComponent implements OnInit {
         { label: 'Depth of Discharge', value: '90% (Li) / 70% (Lead)' },
         { label: 'Service Life', value: 'Up to 10+ Years' },
         { label: 'Charging Rate', value: '0.5C to 1C (Lithium)' }
-      ] 
+      ]
     }
   ];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -184,7 +193,7 @@ export class ProductDetailsComponent implements OnInit {
 
   sendWhatsApp() {
     if (!this.product) return;
-    const phoneNumber = '919709877100';
+    const phoneNumber = '7739650320';
     const message = `Hello Maa Veena Power Zone, I'm interested in the ${this.product.name}. Please provide a technical quote and installation details.`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
